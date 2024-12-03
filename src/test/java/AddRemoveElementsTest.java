@@ -16,17 +16,11 @@ public class AddRemoveElementsTest {
 
     @BeforeMethod
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");//открывает окно на весь экран
-        //options.addArguments("headless");//без открытия окна браузера
-        //options.addArguments("incognito");//тест в режиме инкогнито
-        //options.setBinary("disable-notification");//отключает уведомления в браузере
-        driver = new ChromeDriver(options);
-        //driver.manage().window().maximize();//эквивалентно https://the-internet.herokuapp.com/add_remove_elements/
-        // неявное ожидание
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));//задать максимальное время ожидания для
-        // загрузки элементов
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
     }
+
     @Test
     public void checkAddRemoveTwoElements() {
         driver.get("https://the-internet.herokuapp.com/add_remove_elements/");
@@ -39,6 +33,7 @@ public class AddRemoveElementsTest {
         //если elementOnDelete1 и elementOnDelete2 находятся на дисплее, то должно быть true
         Assert.assertEquals(elementOnDelete1,elementOnDelete2);
     }
+
     @Test
     public void checkAddRemoveElements() {
         driver.get("https://the-internet.herokuapp.com/add_remove_elements/");
@@ -50,8 +45,8 @@ public class AddRemoveElementsTest {
         driver.findElement(By.xpath("//button[text()='Delete']")).click();
         int count = driver.findElements(By.className("added-manually")).size();
         Assert.assertEquals(count, 1);
-
     }
+
     @Test
     public void checkAddRemoveElementsNegativ() {
         driver.get("https://the-internet.herokuapp.com/add_remove_elements/");
@@ -65,8 +60,8 @@ public class AddRemoveElementsTest {
         //проверка на количество элементов не равное 1
         boolean countElements = (count != 1);
         Assert.assertTrue(countElements);
-
     }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();

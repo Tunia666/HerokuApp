@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class CheckboxesTest {
     WebDriver driver;
-
     @BeforeMethod
     public void setup() {
         ChromeOptions options = new ChromeOptions();
@@ -19,6 +18,7 @@ public class CheckboxesTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
+
     @Test
     public void checkCheckbox1() {
         driver.get("https://the-internet.herokuapp.com/checkboxes");
@@ -31,6 +31,7 @@ public class CheckboxesTest {
         checkbox1 = driver.findElement(By.xpath("//*[@id=\"checkboxes\"]/input[1]")).isSelected();
         Assert.assertTrue(checkbox1);
     }
+
     @Test
     public void checkCheckbox2() {
         driver.get("https://the-internet.herokuapp.com/checkboxes");
@@ -43,6 +44,7 @@ public class CheckboxesTest {
         checkbox2 = driver.findElement(By.xpath("//*[@id=\"checkboxes\"]/input[2]")).isSelected();
         Assert.assertFalse(checkbox2);
     }
+
     @Test
     public void checkCheckboxes() {
         driver.get("https://the-internet.herokuapp.com/checkboxes");

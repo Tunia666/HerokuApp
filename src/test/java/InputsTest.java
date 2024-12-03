@@ -21,6 +21,7 @@ public class InputsTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
+
     @Test
     public void checkInputUp() {
         driver.get("https://the-internet.herokuapp.com/inputs");
@@ -30,8 +31,8 @@ public class InputsTest {
         driver.findElement(By.xpath("//*[@id=\"content\"]/div/div/div/input")).sendKeys(Keys.ARROW_UP);
         String increasedValue = driver.findElement(By.xpath("//*[@id=\"content\"]/div/div/div/input")).getAttribute("value");
         Assert.assertEquals(increasedValue, "1");
-
     }
+
     @Test
     public void checkInputDown() {
         driver.get("https://the-internet.herokuapp.com/inputs");
